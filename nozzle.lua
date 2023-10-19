@@ -14,7 +14,7 @@ initial = FlowState:new{p=p_res, T=T_res}
 exp_region = FlowState:new{p=0.1*p_res, T=T_res}
 
 -- Geometry
-nozContour = Spline2:new{nozContFile}
+nozContour = Spline2:new{filename=nozContFile}
 nozReparam = ArcLengthParameterizedPath:new{underlying_path=nozContour}
 A = nozContour(0.0)
 B = nozContour(1.0)
@@ -44,17 +44,17 @@ blk = FluidBlock:new{grid=grid, initialState = fillCondition,
                     bcList = {west=InFlowBC_FromStagnation:new{stagnationState=initial},
                                 east=OutFlowBC_Simple:new{}}}
 
-config.max_time = 1.0e-3
-config.max_step = 5000
+config.max_time = 10.0e-3
+config.max_step = 50000
 config.dt_init = 1.0e-6
-config.cfl = 0.7
+config.cfl_value = 0.7
 config.dt_plot = config.max_time/50
 config.dt_history = 1.0e-5
 
 config.flux_calculator = "ausmdv"
 
 -- Two history points at inflow and exit
-setHistoryPoint = {x=A.x, y=A.y}
-setHistoryPoint = {x=B.x, y=B.y}
+setHistoryPoint{x=A.x, y=A.y}
+setHistoryPoint{x=B.x, y=B.y}
 
 
