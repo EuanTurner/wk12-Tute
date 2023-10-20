@@ -1,0 +1,8 @@
+post:
+
+e4shared --job=nozzle --post --tindx=last --slice-list="0,:,19,0" --output-file="nozzle-wall-ss.dat" --add-vars="mach,total-p"
+
+gnuplot:
+
+plot "nozzle-wall-ss.dat" u 1:9
+plot "nozzle-wall-ss.dat" u 1:($9/500)
